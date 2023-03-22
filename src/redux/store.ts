@@ -3,7 +3,7 @@ import {
     configureStore
 } from "@reduxjs/toolkit";
 
-import cartReducer from "./features/cart/cartSlice";
+import cartReducer from "./features/cart/cart.slice";
 
 
 // CONFIGURE STORE

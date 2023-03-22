@@ -3,7 +3,7 @@ import { ChevronDown, ChevronUp } from "../icons"
 import { CartItemType } from "../types/cart.types";
 import { useAppDispatch } from "../redux/hooks";
 import { useCallback } from 'react';
-import { decreaseItemAction, increaseItemAction, removeItemAction } from "../redux/features/cart/cartSlice";
+import { decreaseItemAction, increaseItemAction, removeItemAction } from "../redux/features/cart/cart.slice";
 
 
 const CartItem: React.FC<CartItemType> = ({

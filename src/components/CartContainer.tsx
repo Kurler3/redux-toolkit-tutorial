@@ -4,7 +4,7 @@ import { cartContainerDataSelector } from '../redux/features/cart/cart.selectors
 
 import { useAppDispatch } from '../redux/hooks';
 import { useCallback } from 'react';
-import { clearCartAction } from '../redux/features/cart/cartSlice';
+import { clearCartAction } from '../redux/features/cart/cart.slice';
 
 const CartContainer: React.FC = () => {
 
