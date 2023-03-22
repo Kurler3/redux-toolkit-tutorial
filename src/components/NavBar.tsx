@@ -1,4 +1,4 @@
-import { getCount } from "../features/cart/cartSelectors";
+import { cartItemsAmountSelector } from "../redux/features/cart/cart.selectors";
 import { CartIcon } from "../icons";
 
 import {useSelector} from "react-redux";
@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 const NavBar:React.FC = () => {
 
     // GET AMOUNT
-    const amount = useSelector(getCount);
+    const amount = useSelector(cartItemsAmountSelector);
 
     return (
        <nav>
