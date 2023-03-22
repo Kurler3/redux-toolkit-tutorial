@@ -5,6 +5,7 @@ import { cartContainerDataSelector } from '../redux/features/cart/cart.selectors
 import { useAppDispatch } from '../redux/hooks';
 import { useCallback } from 'react';
 import { clearCartAction } from '../redux/features/cart/cart.slice';
+import { openModal } from '../redux/features/modal/modal.slice';
 
 const CartContainer: React.FC = () => {
 
@@ -24,9 +25,9 @@ const CartContainer: React.FC = () => {
   // FUNCTIONS //////////////
   ///////////////////////////
 
-  const handleClearCart = useCallback(() => {
-    appDispatch(clearCartAction());
-  }, [])
+  const handleOpenModal = useCallback(() => {
+    appDispatch(openModal());
+  }, []);
 
 
   ///////////////////////////
@@ -69,7 +70,7 @@ const CartContainer: React.FC = () => {
             <div className='cart-total'>
                 <h4>total <span>${total.toFixed(2)}</span></h4>
             </div>
-            <button className='btn clear-btn' onClick={handleClearCart}>
+            <button className='btn clear-btn' onClick={handleOpenModal}>
                 Clear Cart
             </button>
         </footer>

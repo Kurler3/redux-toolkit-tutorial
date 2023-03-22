@@ -4,12 +4,21 @@ import NavBar from './components/NavBar'
 import CartContainer from './components/CartContainer'
 import Modal from './components/Modal'
 
+import { useAppSelector } from './redux/hooks'
+import { isModalOpenSelector } from './redux/features/modal/modal.selectors'
+
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const isModalOpen = useAppSelector(isModalOpenSelector);
 
   return (
     <main>
-      <Modal />
+      {
+        isModalOpen ?
+        <Modal />
+        :
+        null
+      }
       <NavBar />
       <CartContainer />
     </main>
