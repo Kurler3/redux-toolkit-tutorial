@@ -21,3 +21,10 @@ export const cartContainerDataSelector = createSelector(
     }
 )
 
+// EXPORT CART ITEMS + LOADING
+export const cartItemsAndLoadingSelector = (state: RootType) => {
+    return {
+        cartItems: state.cart.cartItems,
+        isLoading: state.cart.isLoading,
+    }
+}

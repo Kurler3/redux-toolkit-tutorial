@@ -1,5 +1,7 @@
 
 import {
+    ActionReducerMapBuilder,
+    createAsyncThunk,
     createSlice
 } from "@reduxjs/toolkit";
 
@@ -14,9 +16,29 @@ export interface CartState  {
 }
 
 const initialState: CartState = {
-    cartItems: cartItems,
-    isLoading: true,
+    cartItems: [],
+    isLoading: false,
 }
+
+// FETCH CART ITEMS ASYNC ACTION
+export const getCartItems = createAsyncThunk(
+    'cart/getCartItems',
+    async () => {
+
+        try {
+
+            const cartItemsRes = await fetch("https://course-api.com/react-useReducer-cart-project");
+
+            return await cartItemsRes.json();
+
+        } catch (error) {
+            console.error('Error while fetching cart data...', error);
+
+            // return cartItems;
+        }
+
+    }
+);
 
 const cartSlice = createSlice({
     name: "cart",
@@ -64,6 +86,34 @@ const cartSlice = createSlice({
 
 
         // 
+    },
+
+    // EXTRA REDUCERS FOR THE ASYNC ACTION 
+    extraReducers: (builder: ActionReducerMapBuilder<CartState>) => {
+
+        // PENDING (SET IS LOADING TO TRUE)
+        builder.addCase(
+            getCartItems.pending,
+            (state) => {
+                state.isLoading = true;
+            }
+        )
+        // GOT DATA => SET DATA AND SET IS LOADING TO FALSE
+        .addCase(
+            getCartItems.fulfilled,
+            (state, action: PayloadAction<CartItemType[]>) => {
+                state.isLoading = false;
+                state.cartItems = action.payload;
+            }
+        )
+        // IN CASE OF IT BEING REJECTED
+        .addCase(
+            getCartItems.rejected,
+            (state) => {
+                state.isLoading = false;
+            }
+        )
+        
     }
 });
 
